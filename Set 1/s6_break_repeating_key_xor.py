@@ -60,8 +60,8 @@ def break_repeating_xor(cipher_text: str | bytes) -> bytes:
     ]
     # Transpose the chunks: group all bytes at the same position in each chunk
     transposed = [
-        bytes(chunk[i] for chunk in chunks if len(chunk) > i) for i in range(keysize) #type: ignore
-    ]  
+        bytes(chunk[i] for chunk in chunks if len(chunk) > i) for i in range(keysize)  # type: ignore
+    ]
     key = bytearray()
     for piece in transposed:
         key += break_one_byte_xor(piece, True)
@@ -78,6 +78,6 @@ if __name__ == "__main__":
     cipher_text = bytearray(base64.b64decode(cipher_text))
     key = break_repeating_xor(cipher_text)
     print(key.decode())
-    
+
     plain_txt = XOR_repeating(cipher_text, key)
     print(plain_txt.decode())

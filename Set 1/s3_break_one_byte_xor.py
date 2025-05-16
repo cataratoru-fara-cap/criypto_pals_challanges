@@ -44,9 +44,7 @@ def calculate_score(string: bytes) -> float:
     string = string.lower()
     score = 0
     for char in string:
-        if char in bytes(b"abcdefghijklmnopqrstuvxywz") and ord("a") <= char <= ord(
-            "z"
-        ):  # noqa
+        if char in bytes(b"abcdefghijklmnopqrstuvxywz") and ord("a") <= char <= ord("z"):  # type: ignore
             score += letterScores[char - ord("a")]
         elif char == ord(" "):
             score += 15
@@ -54,8 +52,7 @@ def calculate_score(string: bytes) -> float:
 
 
 def break_one_byte_xor(
-    ciphertext: str | bytes, assume_just_alphabet: bool = False
-) -> bytes:
+    ciphertext: str | bytes, assume_just_alphabet: bool = False) -> bytes:  # type: ignore
     max_score: float = 0
     key: bytes = b""
 
