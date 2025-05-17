@@ -51,8 +51,7 @@ def calculate_score(string: bytes) -> float:
     return score
 
 
-def break_one_byte_xor(
-    ciphertext: str | bytes, assume_just_alphabet: bool = False) -> bytes:  # type: ignore
+def break_one_byte_xor(ciphertext: str | bytes, assume_just_alphabet: bool = False) -> bytes:  # type: ignore
     max_score: float = 0
     key: bytes = b""
 
