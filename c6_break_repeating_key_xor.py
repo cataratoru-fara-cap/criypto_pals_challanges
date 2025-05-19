@@ -3,11 +3,9 @@ h2 = b"wokka wokka!!!"
 import base64
 
 from itertools import combinations
-from pydoc import plain
-from charset_normalizer import from_bytes
-from numpy import average, array
+from numpy import average
 
-from s3_break_one_byte_xor import XOR_repeating, break_one_byte_xor
+from c3_break_one_byte_xor import XOR_repeating, break_one_byte_xor
 
 
 def hamming_distance(h1: bytes | str, h2: bytes | str) -> int:

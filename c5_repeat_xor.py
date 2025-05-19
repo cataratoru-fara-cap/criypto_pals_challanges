@@ -1,4 +1,4 @@
-from s3_break_one_byte_xor import XOR_repeating
+from c3_break_one_byte_xor import XOR_repeating
 
 print(
     XOR_repeating(
