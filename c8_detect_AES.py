@@ -1,5 +1,6 @@
 from binascii import unhexlify
 
+
 def detect_AES(path_to_file: str, block_size: int = 16) -> list[bytes]:
     message = []
     file = open(path_to_file).read().split("\n")
