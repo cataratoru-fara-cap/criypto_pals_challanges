@@ -5,7 +5,7 @@ import base64
 from itertools import combinations
 from numpy import average
 
-from c3_break_one_byte_xor import XOR_repeating, break_one_byte_xor
+from c3_break_one_byte_xor import bxor, break_one_byte_xor
 
 
 def hamming_distance(h1: bytes | str, h2: bytes | str) -> int:
@@ -69,13 +69,11 @@ def break_repeating_xor(cipher_text: str | bytes) -> bytes:
 
 if __name__ == "__main__":
     cipher_text = (
-        open("/home/dragon/Sandbox/criypto_pals_challanges/Set 1/6_xored.txt")
-        .read()
-        .strip()
+        open("/home/dragon/Sandbox/criypto_pals_challanges/6_xored.txt").read().strip()
     )
     cipher_text = bytearray(base64.b64decode(cipher_text))
     key = break_repeating_xor(cipher_text)
     print(key.decode())
 
-    plain_txt = XOR_repeating(cipher_text, key)
+    plain_txt = bxor(cipher_text, key)
     print(plain_txt.decode())

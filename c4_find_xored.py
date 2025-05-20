@@ -1,10 +1,6 @@
-from s3_break_one_byte_xor import XOR_repeating, break_one_byte_xor, calculate_score
+from c3_break_one_byte_xor import bxor, break_one_byte_xor, calculate_score
 
-f = (
-    open("/home/dragon/Sandbox/criypto_pals_challanges/Set 1/4_xored.txt")
-    .read()
-    .split("\n")
-)
+f = open("/home/dragon/Sandbox/criypto_pals_challanges/4_xored.txt").read().split("\n")
 
 max_score = 0
 key = bytes()
@@ -12,8 +8,8 @@ decrypted_text = bytes()
 
 for i, line in enumerate(f):
     possible_key = break_one_byte_xor(line)
-    possible_decrypted_text = XOR_repeating(line, possible_key)
-    current = calculate_score(XOR_repeating(line, possible_key))
+    possible_decrypted_text = bxor(line, possible_key)
+    current = calculate_score(bxor(line, possible_key))
 
     if current > max_score:
         max_score = current

@@ -28,7 +28,7 @@ letterScores = [
 ]
 
 
-def XOR_repeating(input_string: str | bytes, key: str | bytes) -> bytes:
+def bxor(input_string: str | bytes, key: str | bytes) -> bytes:
     xord_output = bytearray()
     if isinstance(input_string, str):
         input_string = bytes.fromhex(input_string)
@@ -61,7 +61,7 @@ def break_one_byte_xor(ciphertext: str | bytes, assume_just_alphabet: bool = Fal
     possible_keys = bytes(range(256))
     for possible_key in possible_keys:
         possible_key_bytes = bytes([possible_key])
-        decrypted_txt = XOR_repeating(ciphertext, possible_key_bytes)
+        decrypted_txt = bxor(ciphertext, possible_key_bytes)
         if (
             assume_just_alphabet
             and all((32 <= b < 127) or b in (9, 10, 13) for b in decrypted_txt)
@@ -82,7 +82,7 @@ if __name__ == "__main__":
         "1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736", True
     )
     print(
-        XOR_repeating(
+        bxor(
             "1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736",
             key=key,
         )

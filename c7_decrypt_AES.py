@@ -1,14 +1,18 @@
 import base64
-from sys import argv
 from Crypto.Cipher import AES
 
 
-def aes_in_ecb(key: bytes, byte_string: bytes, decrypt: bool = True) -> bytes:
+def ecb_encrypt(plaintext: bytes, key: bytes) -> bytes:
     cipher = AES.new(key=key, mode=AES.MODE_ECB)
-    if decrypt:
-        return cipher.decrypt(byte_string)
-    else:
-        return cipher.encrypt(byte_string)
+    return cipher.encrypt(plaintext)
+
+
+def ecb_decrypt(
+    ciphertext: bytes,
+    key: bytes,
+) -> bytes:
+    cipher = AES.new(key=key, mode=AES.MODE_ECB)
+    return cipher.decrypt(ciphertext)
 
 
 if __name__ == "__main__":
@@ -16,5 +20,5 @@ if __name__ == "__main__":
     f = open(file_path).read()
     f = base64.b64decode(f)
     key = b"YELLOW SUBMARINE"
-    message = aes_in_ecb(key=key, byte_string=f)
+    message = ecb_decrypt(ciphertext=f, key=key)
     print(message.decode())
