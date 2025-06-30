@@ -1,19 +1,18 @@
-def add_PKCS_padding(plaintext: bytes | bytearray, block_size: int = 16) -> bytearray:
-    if isinstance(plaintext, bytes):
-        plaintext = bytearray(plaintext)
-    elif not isinstance(plaintext, bytearray):
-        raise Exception(f"Invalid type {type(plaintext)}")
-    n = len(plaintext) % block_size
+def add_PKCS_padding(plain_text: bytes | bytearray, block_size: int = 16) -> bytearray:
+    if isinstance(plain_text, bytes):
+        plain_text = bytearray(plain_text)
+    elif not isinstance(plain_text, bytearray):
+        raise Exception(f"Invalid type {type(plain_text)}")
+    n = len(plain_text) % block_size
     for i in range(block_size - n):
-        plaintext.append(block_size - n)  # type: ignore
+        plain_text.append(block_size - n)  # type: ignore
 
-    return plaintext
+    return plain_text
 
 
 def remove_PKCS_padding(byte_string: bytes) -> bytes:
     padding_length = byte_string[-1]
     return byte_string[:-padding_length]
-
 
 if __name__ == "__main__":
     padded = bytearray(b"YELLOW SUBMARINE")
